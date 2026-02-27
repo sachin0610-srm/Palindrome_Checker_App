@@ -1,5 +1,22 @@
 import java.util.*;
 public class PalindromeCheckerApp {
+    public static boolean isPalindrome(String text) {
+        Stack<Character> stack = new Stack<>();
+
+        // Push all characters to stack
+        for (int i = 0; i < text.length(); i++) {
+            stack.push(text.charAt(i));
+        }
+
+        // Compare characters while popping
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) != stack.pop()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
@@ -11,21 +28,5 @@ public class PalindromeCheckerApp {
         } else {
             System.out.println("It is not a palindrome.");
         }
-    }
-    public static boolean isPalindrome(String text) {
-        char[] arr = text.toCharArray();
-
-        int left = 0;
-        int right = arr.length - 1;
-
-        while (left < right) {
-            if (arr[left] != arr[right]) {
-                return false;
-            }
-            left++;
-            right--;
-        }
-
-        return true;
     }
 }
