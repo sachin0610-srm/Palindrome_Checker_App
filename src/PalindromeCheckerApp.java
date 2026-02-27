@@ -1,23 +1,29 @@
 import java.util.*;
 public class PalindromeCheckerApp {
     public static boolean isPalindrome(String text) {
-        Stack<Character> stack = new Stack<>();
 
-        // Push all characters to stack
+        Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
+
+        // Insert characters into stack and queue
         for (int i = 0; i < text.length(); i++) {
-            stack.push(text.charAt(i));
+            char ch = text.charAt(i);
+            stack.push(ch);
+            queue.add(ch);
         }
 
-        // Compare characters while popping
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) != stack.pop()) {
+        // Compare elements
+        while (!stack.isEmpty()) {
+            if (stack.pop() != queue.remove()) {
                 return false;
             }
         }
 
         return true;
     }
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter a string: ");
