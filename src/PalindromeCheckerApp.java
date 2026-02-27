@@ -1,20 +1,20 @@
 import java.util.*;
 public class PalindromeCheckerApp {
-    public static boolean isPalindrome(String text) {
+    public static boolean isPalindrome(String input) {
 
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Insert characters into stack and queue
-        for (int i = 0; i < text.length(); i++) {
-            char ch = text.charAt(i);
-            stack.push(ch);
-            queue.add(ch);
+        // Add each character to the deque
+        for (char c : input.toCharArray()) {
+            deque.addLast(c);
         }
 
-        // Compare elements
-        while (!stack.isEmpty()) {
-            if (stack.pop() != queue.remove()) {
+        // Compare front and rear characters
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
+
+            if (front != rear) {
                 return false;
             }
         }
